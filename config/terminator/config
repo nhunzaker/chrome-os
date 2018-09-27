@@ -1,0 +1,25 @@
+[global_config]
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    allow_bold = False
+    background_color = "#151624"
+    cursor_color = "#c7c7c7"
+    custom_command = fish
+    font = DejaVu Sans Mono 9
+    foreground_color = "#eeeeec"
+    palette = "#0d0d0d:#ec4843:#41e25a:#edae58:#8eb8fd:#ff51a7:#a5f3ec:#d3e1ed:#546e7a:#ff555e:#41e270:#edae58:#8eb8fd:#fda5d1:#a5f3ec:#ffffff"
+    scrollback_lines = 10000
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_custom_command = True
+    use_system_font = False
