@@ -60,6 +60,9 @@ title "Installing pre-requisite packages";
         preload \
         unzip \
         wget \
+        snap \
+        postgresql \
+        inotify-tools \
         zlib1g-dev;
 
     sudo updatedb;
