@@ -62,6 +62,7 @@ title "Installing pre-requisite packages";
         wget \
         snap \
         postgresql \
+        libpq-dev \
         inotify-tools \
         zlib1g-dev;
 
