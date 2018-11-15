@@ -61,6 +61,7 @@ title "Installing pre-requisite packages";
         unzip \
         wget \
         snap \
+        ack \
         postgresql \
         libpq-dev \
         inotify-tools \
@@ -90,23 +91,23 @@ title "Installing asdf"
 breakLine;
 
 title "Installing Node 8 (LTS)"
-    asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-    bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
-    asdf install nodejs 8.11.3
-    asdf global nodejs 8.11.3
+    asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git;
+    bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring;
+    asdf install nodejs 8.11.3;
+    asdf global nodejs 8.11.3;
 breakLine;
 
 title "Installing Yarn";
-    sudo apt-get install --no-install-recommends yarn
+    sudo apt-get install --no-install-recommends yarn;
 breakLine;
 
 title "Installing Android Studio";
     sudo apt install -y default-jre lib32z1 lib32ncurses5 lib32stdc++6;
-    mkdir -p Applications;
-    mkdir cache
-    if [ ! -f src/android-studio.zip ]; then
-      curl https://dl.google.com/dl/android/studio/ide-zips/3.2.0.25/android-studio-ide-181.4987877-linux.zip --output src/android-studio.zip;
-      unzip src/android-studio.zip -d Applications/
+    mkdir -p ~/Applications;
+    mkdir -p ~/cache;
+    if [ ! -f ~/cache/android-studio.zip ]; then
+      curl https://dl.google.com/dl/android/studio/ide-zips/3.2.0.25/android-studio-ide-181.4987877-linux.zip --output ~/cache/android-studio.zip;
+      unzip ~/cache/android-studio.zip -d Applications/
     fi
 breakLine;
 
