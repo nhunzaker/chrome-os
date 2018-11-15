@@ -127,6 +127,29 @@ title "Installing Terminator";
     sudo apt install -y terminator;
 breakLine;
 
+title "Configuring Git Stuff":
+    mkdir -p ~/bin/
+
+    # https://github.com/so-fancy/diff-so-fancy
+    curl https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy --ouput ~/bin/diff-so-fancy
+
+    # https://github.com/so-fancy/diff-so-fancy#usage
+    git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+
+    # https://github.com/so-fancy/diff-so-fancy#improved-colors-for-the-highlighted-bits
+    git config --global color.ui true
+    git config --global color.diff-highlight.oldNormal    "red bold"
+    git config --global color.diff-highlight.oldHighlight "red bold 52"
+    git config --global color.diff-highlight.newNormal    "green bold"
+    git config --global color.diff-highlight.newHighlight "green bold 22"
+    git config --global color.diff.meta       "yellow"
+    git config --global color.diff.frag       "magenta bold"
+    git config --global color.diff.commit     "yellow bold"
+    git config --global color.diff.old        "red bold"
+    git config --global color.diff.new        "green bold"
+    git config --global color.diff.whitespace "red reverse"
+breakLine;
+
 # Clean
 title "Finalizing & cleaning up...";
     sudo apt --fix-broken install -y;
