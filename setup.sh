@@ -131,7 +131,7 @@ title "Configuring Git Stuff":
     mkdir -p ~/bin/
 
     # https://github.com/so-fancy/diff-so-fancy
-    curl https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy --ouput ~/bin/diff-so-fancy
+    curl https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy --output ~/bin/diff-so-fancy
 
     # https://github.com/so-fancy/diff-so-fancy#usage
     git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
