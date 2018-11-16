@@ -62,6 +62,7 @@ title "Installing pre-requisite packages";
         wget \
         snap \
         ack \
+        tree \
         postgresql \
         libpq-dev \
         inotify-tools \
