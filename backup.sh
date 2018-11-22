@@ -7,8 +7,9 @@ rsync --archive \
       --exclude Android \
       --exclude Applications \
       --exclude secrets \
-      --exclude Work \
       --exclude cache \
+      --exclude .git \
+      --filter ':- .gitignore' \
       ~ \
       remote-machine:backup
 
