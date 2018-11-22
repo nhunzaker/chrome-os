@@ -157,8 +157,8 @@ title "Installing desktop apps...";
   cp ./icons/* ~/res/
 
   # Install desktop extensions
-  sudo desktop-file-install ./desktop/emacs25.desktop
-  sudo desktop-file-install ./desktop/terminator.desktop
+  desktop-file-install --dir=$HOME/.local/share/applications ./desktop/emacs25.desktop
+  desktop-file-install --dir=$HOME/.local/share/applications ./desktop/terminator.desktop
   sudo gtk-update-icon-cache
 breakLine;
 
