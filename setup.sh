@@ -151,6 +151,17 @@ title "Configuring Git Stuff":
     git config --global color.diff.whitespace "red reverse"
 breakLine;
 
+title "Installing desktop apps...";
+  # Copy over icons
+  mkdir -p ~/res
+  cp ./icons/* ~/res/
+
+  # Install desktop extensions
+  sudo desktop-file-install ./desktop/emacs25.desktop
+  sudo desktop-file-install ./desktop/terminator.desktop
+  sudo gtk-update-icon-cache
+breakLine;
+
 # Clean
 title "Finalizing & cleaning up...";
     sudo apt --fix-broken install -y;
