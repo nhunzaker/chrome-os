@@ -1,17 +1,29 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "Archiving... This may take a while"
+
 rsync --archive \
       --delete \
-      --progress \
-      --human-readable \
       --exclude node_modules \
+      --exclude Downloads \
       --exclude elpa \
       --exclude Android \
-      --exclude Applications \
+      --exclude .local \
       --exclude secrets \
-      --exclude cache \
       --exclude .git \
+      --exclude Work \
       --filter ':- .gitignore' \
       ~ \
-      remote-machine:backup
+      /tmp/backup
+
+zip -rq /tmp/backup.zip /tmp/backup
+
+cp /tmp/backup.zip ~/Downloads/backup
+rm /tmp/backup.zip
+
+echo -e "Backed up to ~/Downloads/backup.zip"
 
 # Eventually set backups, like:
 # | tee /Volumes/BackupDrive/backup.log
