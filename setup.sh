@@ -191,9 +191,10 @@ perform "Configuring Git Stuff":
     if [ ! -f ~/.local/bin/diff-so-fancy ]; then
       mkdir -p ~/.local/bin/;
       curl https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy --output ~/.local/bin/diff-so-fancy;
-      # https://github.com/so-fancy/diff-so-fancy#usage
       git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX";
     fi;
+
+    chmod u+x ~/.local/bin/diff-so-fancy
 
     pretty_print "✓ Diff So Fancy"
 
