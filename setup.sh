@@ -77,6 +77,7 @@ perform "Installing pre-requisite packages";
     sudo apt install -qq -q -y \
         ack \
         apt-transport-https \
+        xclip \
         autoconf \
         automake \
         build-essential \
