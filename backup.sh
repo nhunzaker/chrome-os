@@ -20,7 +20,7 @@ rsync --archive \
 
 zip -rq /tmp/backup.zip /tmp/backup
 
-cp /tmp/backup.zip ~/Downloads/backup
+cp /tmp/backup.zip ~/Downloads/
 rm /tmp/backup.zip
 
 echo -e "Backed up to ~/Downloads/backup.zip"

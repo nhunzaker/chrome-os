@@ -186,6 +186,10 @@ perform "Installing Android Studio";
     pretty_print "✓ Android Studio"
 end;
 
+perform "Installing watchman";
+  ./watchman.sh
+end;
+
 perform "Configuring Git Stuff":
     # https://github.com/so-fancy/diff-so-fancy
     if [ ! -f ~/.local/bin/diff-so-fancy ]; then

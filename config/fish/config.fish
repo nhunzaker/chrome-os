@@ -1,16 +1,21 @@
 set EDITOR emacsclient
 set ALTERNATE_EDITOR emacs
-set REACT_EDITOR "$HOME/Applications/Emacs.app"
+set REACT_EDITOR emacsclient
 
 set fish_greeting ""
 
 export DISPLAY=:0
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Android
 if test -d $HOME/Android
   set ANDROID_HOME $HOME/Android/Sdk
   set PATH $PATH $ANDROID_HOME/tools
+  set PATH $PATH $ANDROID_HOME/tools/bin
+  set PATH $PATH $ANDROID_HOME/emulator
   set PATH $PATH $ANDROID_HOME/platform-tools
+
   export ANDROID_HOME
 end
 
@@ -25,6 +30,16 @@ end
 # Yarn bin
 if test -d $HOME/.config/yarn/global/node_modules
   set PATH $PATH "$HOME/.config/yarn/global/node_modules/.bin/"
+end
+
+# Rust
+if test -d $HOME/.cargo/bin/
+   set PATH $PATH "$HOME/.cargo/bin/"
+end
+
+# Local binaries
+if test -d $HOME/.local/bin/
+  set PATH $PATH "$HOME/.local/bin/"
 end
 
 alias be="bundle exec"
