@@ -109,6 +109,7 @@ perform "Installing pre-requisite packages";
         snap \
         tree \
         unixodbc-dev \
+        zip \
         unzip \
         wget \
         libgd-tools \
@@ -187,7 +188,7 @@ perform "Installing Android Studio";
 end;
 
 perform "Installing watchman";
-  ./watchman.sh
+    bash ./watchman.sh
 end;
 
 perform "Configuring Git Stuff":
