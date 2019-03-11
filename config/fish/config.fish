@@ -1,20 +1,20 @@
-set EDITOR emacsclient
-set ALTERNATE_EDITOR emacs
-set REACT_EDITOR emacsclient
+setenv EDITOR emacsclient
+setenv ALTERNATE_EDITOR emacs
+setenv REACT_EDITOR emacsclient
 
 set fish_greeting ""
 
-export DISPLAY=:0
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+setenv DISPLAY :0
+setenv LC_ALL "en_US.UTF-8"
+setenv LANG "en_US.UTF-8"
 
 # Android
 if test -d $HOME/Android
-  set ANDROID_HOME $HOME/Android/Sdk
-  set PATH $PATH $ANDROID_HOME/tools
-  set PATH $PATH $ANDROID_HOME/tools/bin
-  set PATH $PATH $ANDROID_HOME/emulator
-  set PATH $PATH $ANDROID_HOME/platform-tools
+  setenv ANDROID_HOME $HOME/Android/Sdk
+  setenv PATH $PATH $ANDROID_HOME/tools
+  setenv PATH $PATH $ANDROID_HOME/tools/bin
+  setenv PATH $PATH $ANDROID_HOME/emulator
+  setenv PATH $PATH $ANDROID_HOME/platform-tools
 
   export ANDROID_HOME
 end
@@ -43,6 +43,7 @@ if test -d $HOME/.local/bin/
 end
 
 alias be="bundle exec"
+alias adb_connect_chrome_os="adb connect 100.115.92.2:5555"
 
 set -gx HOSTNAME (hostname)
 function keychain_start
@@ -57,6 +58,20 @@ function gz
   cat "$argv[1]" | wc -c
   echo "gzipped size (bytes): "
   gzip -c "$argv[1]" | wc -c
+end
+
+function make_executable
+  sudo chmod u+x $argv[1]
+end
+
+function adb_screenshot
+  adb shell screencap -p /sdcard/screen.png
+  adb pull /sdcard/screen.png
+  adb shell rm /sdcard/screen.png
+end
+
+function mark
+  pandoc $argv[1] | lynx -stdin
 end
 
 set __fish_git_prompt_color_branch magenta

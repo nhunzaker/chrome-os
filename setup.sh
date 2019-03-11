@@ -178,6 +178,14 @@ perform "Installing Postgresql";
     pretty_print "✓ $(postgres --version)"
 end;
 
+perform "Installing Docker";
+  if [ ! -x "$(command -v docker-compose)" ]; then
+    bash ./docker.sh
+  fi
+
+  pretty_print "✓ Docker (restart is necessary to run without sudo)"
+end;
+
 perform "Installing Android Studio";
     if [ ! -d ~/.local/applications/android-studio ]; then
       mkdir -p ~/.local/applications;
@@ -188,7 +196,9 @@ perform "Installing Android Studio";
 end;
 
 perform "Installing watchman";
-    bash ./watchman.sh
+    if [ ! -x "$(command -v watchman)" ]; then
+      $DIR/watchman.sh
+    fi
 end;
 
 perform "Configuring Git Stuff":

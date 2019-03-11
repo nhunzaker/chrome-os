@@ -2,28 +2,43 @@
 
 set -e
 
+TARGET=/tmp/backups
+FILENAME=backup-$(date --iso-8601).zip
+
 echo "Archiving... This may take a while"
+
+cd $HOME
+
+mkdir -p $TARGET
 
 rsync --archive \
       --delete \
+      --relative \
       --exclude node_modules \
-      --exclude Downloads \
       --exclude elpa \
-      --exclude Android \
-      --exclude .local \
-      --exclude secrets \
       --exclude .git \
-      --exclude Work \
       --filter ':- .gitignore' \
-      ~ \
-      /tmp/backup
+      .AndroidStudio*/config \
+      .config/terminator \
+      .config/fish \
+      .emacs.d/init.el \
+      .emacs.d/themes \
+      .fonts \
+      .gitconfig \
+      .gnupg \
+      .org \
+      .ssh \
+      $TARGET
 
-zip -rq /tmp/backup.zip /tmp/backup
+cd $TARGET
 
-cp /tmp/backup.zip ~/Downloads/
-rm /tmp/backup.zip
+zip -r -q "$FILENAME" .
 
-echo -e "Backed up to ~/Downloads/backup.zip"
+mkdir -p ~/Downloads
+cp $FILENAME ~/Downloads/
+rm $FILENAME
+
+echo -e "Backed up to ~/Downloads/$FILENAME"
 
 # Eventually set backups, like:
 # | tee /Volumes/BackupDrive/backup.log

@@ -12,7 +12,7 @@ TARGET=~/.local/bin/watchman
 # Pre-check
 ###
 
-if [ -f $TARGET ]; then
+if [ -f "$TARGET" ]; then
   echo "✓ Watchman is already installed"
   exit 0
 fi
@@ -22,14 +22,16 @@ fi
 ###
 
 sudo apt-get update -qq
-sudo apt-get install -y -qq -q build-essential python-dev automake autoconf libtool
+sudo apt-get install -y -qq -q build-essential python-dev automake autoconf libtool pkg-config
 
 ###
 # Source
 ###
 
 cd /tmp
-git clone https://github.com/facebook/watchman.git
+if [ ! -d "watchman" ]; then
+  git clone https://github.com/facebook/watchman.git
+fi
 cd watchman
 # Make sure we're in a clean state
 # https://github.com/facebook/watchman/issues/542
@@ -44,4 +46,5 @@ git checkout $RELEASE
 ./configure --enable-statedir=/tmp
 sudo make
 sudo make install
+mkdir -p $(dirname $TARGET)
 sudo mv watchman $TARGET
