@@ -58,19 +58,22 @@ printf "\n"
 
 
 # Note: This must happen first, otherwise the icon never updates
-perform "Installing desktop apps...";
-  # Copy over icons
-  mkdir -p ~/.local/icons
-  cp $DIR/icons/* ~/.local/icons/
+if [ "$INSTALL_DESKTOP_FILES" -eq "true" ]; then
+  perform "Installing desktop apps...";
+    # Copy over icons
+    mkdir -p ~/.local/icons
+    cp $DIR/icons/* ~/.local/icons/
 
-  # Install desktop extensions
-  desktop-file-install --dir=$HOME/.local/share/applications $DIR/desktop/emacs.desktop
-  pretty_print "✓ Emacs"
-  desktop-file-install --dir=$HOME/.local/share/applications $DIR/desktop/terminator.desktop
-  pretty_print "✓ Terminator"
-  # I'm not sure this works... Possibly ChromeOS just doesn't support it:
-  # update-desktop-database
-end;
+    # Install desktop extensions
+    desktop-file-install --dir=$HOME/.local/share/applications $DIR/desktop/emacs.desktop
+    pretty_print "✓ Emacs"
+
+    desktop-file-install --dir=$HOME/.local/share/applications $DIR/desktop/terminator.desktop
+    pretty_print "✓ Terminator"
+    # I'm not sure this works... Possibly ChromeOS just doesn't support it:
+    # update-desktop-database
+  end;
+fi;
 
 perform "Installing pre-requisite packages";
     sudo apt update -qq;
@@ -87,7 +90,6 @@ perform "Installing pre-requisite packages";
         default-jre \
         dirmngr \
         git \
-        gksu \
         gnupg2 \
         htop \
         imagemagick \
@@ -117,9 +119,12 @@ perform "Installing pre-requisite packages";
         gawk \
         emacs25 \
         keychain \
-        terminator \
         fish man sqlite3 \
         zlib1g-dev;
+
+    if [ "$INSTALL_TERMINATOR" -eq "true"]; then
+      sudo apt install -y -qq -q terminator;
+    fi
 
     sudo updatedb;
 end;
@@ -158,9 +163,13 @@ end;
 perform "Installing Ruby"
     if [ ! -d ~/.asdf/plugins/ruby ]; then
       asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git;
+    fi;
+
+    if [ ! -x "$(command -v ruby)" ]; then
       asdf install ruby 2.5.1;
       asdf global ruby 2.5.1;
     fi;
+
     pretty_print "✓ $(ruby -v)"
 end;
 
@@ -170,6 +179,8 @@ perform "Installing Postgresql";
     # https://github.com/smashedtoatoms/asdf-postgres
     if [ ! -d ~/.asdf/plugins/postgres ]; then
       asdf plugin-add postgres https://github.com/smashedtoatoms/asdf-postgres.git;
+    fi
+    if [ ! -x "$(command -v pg_ctl)" ]; then
       asdf install postgres 11.1
       asdf global postgres 11.1
       pg_ctl start
@@ -196,9 +207,9 @@ perform "Installing Android Studio";
 end;
 
 perform "Installing watchman";
-    if [ ! -x "$(command -v watchman)" ]; then
-      $DIR/watchman.sh
-    fi
+  if [ ! -x "$(command -v watchman)" ]; then
+    bash $DIR/watchman.sh
+  fi
 end;
 
 perform "Configuring Git Stuff":
