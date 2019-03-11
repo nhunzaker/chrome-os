@@ -58,7 +58,7 @@ printf "\n"
 
 
 # Note: This must happen first, otherwise the icon never updates
-if [ "$INSTALL_DESKTOP_FILES" -eq "true" ]; then
+if [ "$INSTALL_DESKTOP_FILES" == "true" ]; then
   perform "Installing desktop apps...";
     # Copy over icons
     mkdir -p ~/.local/icons
@@ -122,7 +122,7 @@ perform "Installing pre-requisite packages";
         fish man sqlite3 \
         zlib1g-dev;
 
-    if [ "$INSTALL_TERMINATOR" -eq "true"]; then
+    if [ "$INSTALL_TERMINATOR" == "true"]; then
       sudo apt install -y -qq -q terminator;
     fi
 
