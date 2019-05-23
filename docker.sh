@@ -3,7 +3,7 @@
 sudo apt-get remove -qq docker docker-engine docker.io containerd runc
 
 # Update the apt package index
-sudo apt-get update --qq -q
+sudo apt-get update -qq -q
 
 # Install packages to allow apt to use a repository over HTTPS
 sudo apt-get install -y -qq \
