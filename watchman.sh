@@ -22,7 +22,7 @@ fi
 ###
 
 sudo apt-get update -qq
-sudo apt-get install -y -qq -q build-essential python-dev automake autoconf libtool pkg-config
+sudo apt-get install -y -qq -q build-essential python-dev automake autoconf libtool pkg-config libcrypto++-dev
 
 ###
 # Source
